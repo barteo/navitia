@@ -85,8 +85,14 @@ void Data::build_block_id() {
                   if (vj1->block_id != vj2->block_id) {
                       return vj1->block_id < vj2->block_id;
                   } else {
-                      auto offset1 = tz_wrapper.tz_handler.get_utc_offset(*vj1->validity_pattern);
-                      auto offset2 = tz_wrapper.tz_handler.get_utc_offset(*vj2->validity_pattern);
+                      LOG4CPLUS_WARN(log4cplus::Logger::getInstance("log"), "#1 Processing journey '" << vj1->meta_vj_name << "'");
+                      // FIXME disabled offset1 due to problems with matching validity pattern
+                      auto offset1 = 0;
+                      // auto offset1 = tz_wrapper.tz_handler.get_utc_offset(*vj1->validity_pattern);
+                      LOG4CPLUS_WARN(log4cplus::Logger::getInstance("log"), "#2 Processing journey '" << vj2->meta_vj_name << "'");
+                      // FIXME disabled offset2 due to problems with matching validity pattern
+                      auto offset2 = 0;
+                      // auto offset2 = tz_wrapper.tz_handler.get_utc_offset(*vj2->validity_pattern);
 
                       // we don't want to link the splited vjs
                       if (offset1 != offset2) {

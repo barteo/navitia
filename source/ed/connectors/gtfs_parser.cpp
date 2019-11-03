@@ -1066,7 +1066,10 @@ std::vector<nm::StopTime*> StopTimeGtfsHandler::handle_line(Data& data, const cs
         nm::StopTime* stop_time = new nm::StopTime();
 
         // we need to convert the stop times in UTC
-        int utc_offset = data.tz_wrapper.tz_handler.get_utc_offset(*vj_it->second->validity_pattern);
+        LOG4CPLUS_WARN(logger, "#1 Processing trip '" << row[trip_c] << "', stop_point '" << row[stop_c] << "'");
+        // FIXME disabled utc_offset due to problems with matching validity pattern
+        int utc_offset = 0;
+        // int utc_offset = data.tz_wrapper.tz_handler.get_utc_offset(*vj_it->second->validity_pattern);
 
         stop_time->arrival_time = to_utc(row[arrival_c], utc_offset);
         stop_time->departure_time = to_utc(row[departure_c], utc_offset);
